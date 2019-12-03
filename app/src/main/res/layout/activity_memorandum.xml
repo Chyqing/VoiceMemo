@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MemorandumActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_res"
+            android:hint="无标题"
+            android:textSize="32dp"
+            ></EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="        年   月   日"
+            android:textSize="16dp"></TextView>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <EditText
+            android:id="@+id/content_res"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="文本"
+            android:layout_gravity="top"
+            android:background="@null"
+            ></EditText>
+
+        <Button
+            android:id="@+id/voice_button"
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:layout_gravity="bottom|center"
+            android:drawableTop="@drawable/voice_pic"
+            android:background="@drawable/circle_btn"
+            android:drawablePadding="5dp"
+            android:onClick="voice_btn_click"/>
+
+    </FrameLayout>
+
+</LinearLayout>
