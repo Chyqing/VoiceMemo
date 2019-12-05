@@ -35,6 +35,9 @@
         <activity android:name=".Memo">
 
         </activity>
+        <activity android:name=".MemoEdit">
+
+        </activity>
         <activity android:name=".Record">
 
         </activity>

@@ -64,4 +64,16 @@ public class MemoValues {
     public String getAlarmTime(){
         return mAlarmTime;
     }
+
+    public String toString(){
+        return "MemoValues{" +
+                "id=" + mId +
+                ",title='" + mTitle + "'\\" +
+                ",content='" + mContent + "'\\" +
+                ",time='" + mDate + "'\\" +
+                ",todo='" + mToDo + "'\\" +
+                ",alarm='" + mAlarm + "'\\" +
+                ",alarmTime" + mAlarmTime +
+                "}";
+    }
 }
