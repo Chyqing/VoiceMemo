@@ -115,7 +115,7 @@ public class MemorandumActivity extends Activity {
 
         @Override
         public void onError(SpeechError speechError) {
-            Log.e(mTag, "onError: " );
+            Log.e(mTag, "onError: " + speechError.getErrorCode());
         }
 
         @Override

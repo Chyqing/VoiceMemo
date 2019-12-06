@@ -36,4 +36,11 @@
         android:textColor="@android:color/secondary_text_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/tv_time"/>
+
 </RelativeLayout>
