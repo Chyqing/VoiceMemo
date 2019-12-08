@@ -1,13 +1,18 @@
 package com.glriverside.chyqing.memorandum.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -17,59 +22,57 @@ import com.glriverside.chyqing.memorandum.Manager.MemoOpenHelper;
 import com.glriverside.chyqing.memorandum.Values.MemoValues;
 import com.glriverside.chyqing.memorandum.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class MemoActivity extends AppCompatActivity {
 
-    private BottomNavigationView nvMemo;
-    private ImageView ivDelete;
-    private ImageView ivAdd;
-    private ImageView ivSet;
     private MemoOpenHelper memoOpenHelper;
     private ListView lvMemo;
+    private ImageButton add_btn;
     public static final String MODEL = "false";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.memo_list);
 
-        memoOpenHelper = new MemoOpenHelper(MemoActivity.this);
-        nvMemo = findViewById(R.id.memo_navigation);
-        LayoutInflater.from(MemoActivity.this).inflate(R.layout.memo_bottom_navigation, nvMemo, true);
-        ivAdd = nvMemo.findViewById(R.id.iv_add);
-        ivDelete = nvMemo.findViewById(R.id.iv_delete);
-        ivSet = nvMemo.findViewById(R.id.iv_set);
-        lvMemo = findViewById(R.id.lv_memo_list);
-
-        initDb();
-
-        ivAdd.setOnClickListener(new View.OnClickListener() {
+        new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                setContentView(R.layout.choose_input_method);
-                Button virtualInput = findViewById(R.id.virtual_input);
-                Button voiceInput = findViewById(R.id.voice_input);
-
-                virtualInput.setOnClickListener(new View.OnClickListener() {
+            public void run() {
+                //此处运行耗时任务
+                runOnUiThread(new Runnable() {
                     @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MemoActivity.this, MemoEditActivity.class);
-                        intent.putExtra(MemoActivity.MODEL, "false");
+                    public void run() {
+                        Intent intent = new Intent(MemoActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
                 });
 
-                voiceInput.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent("memorandum"));
-                    }
-                });
+            }
+        }).start();
+
+        setContentView(R.layout.memo_list);
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5dd504a7");
+        memoOpenHelper = new MemoOpenHelper(MemoActivity.this);
+        lvMemo = findViewById(R.id.lv_memo_list);
+        add_btn = findViewById(R.id.memo_add_btn);
+
+        initDb();
+
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                        Intent intent = new Intent(MemoActivity.this, MemoEditActivity.class);
+                        intent.putExtra(MemoActivity.MODEL, "false");
+                        startActivity(intent);
             }
         });
 
@@ -90,7 +93,11 @@ public class MemoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
+
+
 
     public void initDb(){
         //创建一个MemoValues的List，保存数据库的数据

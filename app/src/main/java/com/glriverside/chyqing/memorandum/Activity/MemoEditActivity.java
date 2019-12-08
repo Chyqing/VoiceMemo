@@ -176,6 +176,8 @@ public class MemoEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.memo_content);
 
+        init();
+
         etTitle = findViewById(R.id.et_memo_title);
         etContent = findViewById(R.id.et_memo_content);
         tvDate = findViewById(R.id.tv_time);
@@ -188,7 +190,6 @@ public class MemoEditActivity extends AppCompatActivity {
         ivSpeak = nvMemoContent.findViewById(R.id.iv_speak);
 
         edit_toolbar_text = findViewById(R.id.text_toolbar);
-        toolbar_btn = findViewById(R.id.toobar_btn);
 
         Log.d(mTag, "onCreate: logcat work");
 
@@ -211,6 +212,17 @@ public class MemoEditActivity extends AppCompatActivity {
         }else{
             alter();
         }
+    }
+
+    public void init(){
+        toolbar_btn = findViewById(R.id.toobar_btn);
+
+        toolbar_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     //添加功能栏
@@ -286,13 +298,6 @@ public class MemoEditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 read();
                 Log.d(mTag, "onClick: speak start");
-            }
-        });
-
-        toolbar_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }
