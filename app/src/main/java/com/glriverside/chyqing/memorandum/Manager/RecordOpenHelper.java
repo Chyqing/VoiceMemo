@@ -1,9 +1,10 @@
-package com.glriverside.chyqing.memorandum;
+package com.glriverside.chyqing.memorandum.Manager;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.glriverside.chyqing.memorandum.Contract.RecordContract;
 
 public class RecordOpenHelper extends SQLiteOpenHelper {
 

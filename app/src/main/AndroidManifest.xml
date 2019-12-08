@@ -26,23 +26,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Memo">
+        <activity android:name=".Activity.MemoActivity">
 
         </activity>
-        <activity android:name=".Record">
+        <activity android:name=".Activity.MemoEditActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".MemorandumActivity">
-            <intent-filter>
-                <action android:name="memorandum"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
-            </intent-filter>
+        <activity android:name=".Activity.RecordActivity">
+
         </activity>
     </application>
 

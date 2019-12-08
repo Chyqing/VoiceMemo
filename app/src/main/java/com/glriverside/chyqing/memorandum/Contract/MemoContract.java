@@ -1,4 +1,4 @@
-package com.glriverside.chyqing.memorandum;
+package com.glriverside.chyqing.memorandum.Contract;
 
 import android.provider.BaseColumns;
 

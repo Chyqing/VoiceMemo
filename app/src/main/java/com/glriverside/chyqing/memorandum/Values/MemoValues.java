@@ -1,5 +1,6 @@
-package com.glriverside.chyqing.memorandum;
+package com.glriverside.chyqing.memorandum.Values;
 
+//保存数据
 public class MemoValues {
     private Integer mId;
     private String mTitle;
@@ -63,5 +64,17 @@ public class MemoValues {
 
     public String getAlarmTime(){
         return mAlarmTime;
+    }
+
+    public String toString(){
+        return "MemoValues{" +
+                "id=" + mId +
+                ",title='" + mTitle + "'\\" +
+                ",content='" + mContent + "'\\" +
+                ",time='" + mDate + "'\\" +
+                ",todo='" + mToDo + "'\\" +
+                ",alarm='" + mAlarm + "'\\" +
+                ",alarmTime" + mAlarmTime +
+                "}";
     }
 }

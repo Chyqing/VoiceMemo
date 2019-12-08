@@ -1,5 +1,6 @@
-package com.glriverside.chyqing.memorandum;
+package com.glriverside.chyqing.memorandum.Values;
 
+//保存数据
 public class RecordValues {
     private Integer mId;
     private String mTitle;
