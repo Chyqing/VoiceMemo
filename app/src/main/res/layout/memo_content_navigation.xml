@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
+<<<<<<< HEAD
         android:id="@+id/iv_speak"
         android:src="@drawable/ic_speak"
         android:layout_width="40dp"
@@ -19,6 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageView
+=======
+>>>>>>> master
         android:id="@+id/iv_alarm"
         android:src="@drawable/ic_alarm_black_24dp"
         android:layout_width="40dp"
@@ -29,7 +32,11 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_todo"
         app:layout_constraintEnd_toEndOf="@id/iv_todo"
         app:layout_constraintTop_toTopOf="@id/iv_todo"
+<<<<<<< HEAD
         app:layout_constraintStart_toStartOf="@id/iv_speak"/>
+=======
+        app:layout_constraintStart_toStartOf="parent"/>
+>>>>>>> master
 
     <ImageView
         android:id="@+id/iv_todo"
