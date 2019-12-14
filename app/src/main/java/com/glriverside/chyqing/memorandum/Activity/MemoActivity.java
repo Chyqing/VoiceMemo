@@ -1,28 +1,22 @@
 package com.glriverside.chyqing.memorandum.Activity;
 
-<<<<<<< HEAD
 import android.content.Context;
-=======
->>>>>>> master
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-=======
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
->>>>>>> master
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -32,26 +26,26 @@ import com.glriverside.chyqing.memorandum.Manager.MemoOpenHelper;
 import com.glriverside.chyqing.memorandum.Values.MemoValues;
 import com.glriverside.chyqing.memorandum.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-<<<<<<< HEAD
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
-=======
->>>>>>> master
 
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MemoActivity extends AppCompatActivity {
 
     private MemoOpenHelper memoOpenHelper;
     private ListView lvMemo;
     private ImageButton add_btn;
+    private BottomNavigationView bottomNavigationView;
+
     public static final String MODEL = "false";
 
     @Override
@@ -78,66 +72,29 @@ public class MemoActivity extends AppCompatActivity {
         memoOpenHelper = new MemoOpenHelper(MemoActivity.this);
         lvMemo = findViewById(R.id.lv_memo_list);
         add_btn = findViewById(R.id.memo_add_btn);
+        bottomNavigationView = findViewById(R.id.bottom_nav);
 
         initDb();
 
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                        Intent intent = new Intent(MemoActivity.this, MemoEditActivity.class);
-                        intent.putExtra(MemoActivity.MODEL, "false");
-                        startActivity(intent);
-=======
-import androidx.appcompat.app.AppCompatActivity;
+                Intent intent = new Intent(MemoActivity.this, MemoEditActivity.class);
+                intent.putExtra(MemoActivity.MODEL, "false");
+                startActivity(intent);
+            }
+        });
 
-public class MemoActivity extends AppCompatActivity {
-
-    private BottomNavigationView nvMemo;
-    private ImageView ivDelete;
-    private ImageView ivAdd;
-    private ImageView ivSet;
-    private MemoOpenHelper memoOpenHelper;
-    private ListView lvMemo;
-    public static final String MODEL = "false";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.memo_list);
-
-        memoOpenHelper = new MemoOpenHelper(MemoActivity.this);
-        nvMemo = findViewById(R.id.memo_navigation);
-        LayoutInflater.from(MemoActivity.this).inflate(R.layout.memo_bottom_navigation, nvMemo, true);
-        ivAdd = nvMemo.findViewById(R.id.iv_add);
-        ivDelete = nvMemo.findViewById(R.id.iv_delete);
-        ivSet = nvMemo.findViewById(R.id.iv_set);
-        lvMemo = findViewById(R.id.lv_memo_list);
-
-        initDb();
-
-        ivAdd.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                setContentView(R.layout.choose_input_method);
-                Button virtualInput = findViewById(R.id.virtual_input);
-                Button voiceInput = findViewById(R.id.voice_input);
-
-                virtualInput.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MemoActivity.this, MemoEditActivity.class);
-                        intent.putExtra(MemoActivity.MODEL, "false");
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.home_bottom_record:
+                        Intent intent = new Intent(MemoActivity.this,RecordActivity.class);
                         startActivity(intent);
-                    }
-                });
-
-                voiceInput.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent("memorandum"));
-                    }
-                });
->>>>>>> master
+                        break;
+                }
+                return false;
             }
         });
 
@@ -146,30 +103,28 @@ public class MemoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MemoActivity.this, MemoEditActivity.class);
-                MemoValues memoValues = (MemoValues)lvMemo.getItemAtPosition(i);
+                MemoValues memoValues = (MemoValues) lvMemo.getItemAtPosition(i);
                 intent.putExtra(MemoContract.MemoEntry._ID, memoValues.getId().toString());
                 intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_TITLE, memoValues.getTitle());
-               // intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_DATE, memoValues.getDate());
+                // intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_DATE, memoValues.getDate());
                 intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_CONTENT_PATH, memoValues.getContent());
-               // intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_ALARM, memoValues.getAlarm().toString());
+                // intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_ALARM, memoValues.getAlarm().toString());
                 intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_ALARM_TIME, memoValues.getAlarmTime());
-               // intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_TODO, memoValues.getToDo().toString());
+                // intent.putExtra(MemoContract.MemoEntry.COLUMN_NAME_TODO, memoValues.getToDo().toString());
                 intent.putExtra(MemoActivity.MODEL, "true");
                 startActivity(intent);
             }
         });
-<<<<<<< HEAD
-
-
     }
 
-
-
-=======
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu,menu);
+        return true;
     }
 
->>>>>>> master
-    public void initDb(){
+    public void initDb() {
         //创建一个MemoValues的List，保存数据库的数据
         List<MemoValues> memoValuesList = new ArrayList<>();
 
@@ -179,9 +134,9 @@ public class MemoActivity extends AppCompatActivity {
         //查询
         Cursor cursor = db.query(MemoContract.MemoEntry.TABLE_NAME, null, null,
                 null, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             MemoValues values;
-            while (!cursor.isAfterLast()){
+            while (!cursor.isAfterLast()) {
 
                 //实例化一个MemoValues
                 values = new MemoValues();
@@ -208,5 +163,13 @@ public class MemoActivity extends AppCompatActivity {
         //设置适配器
         MemoAdapter memoAdapter = new MemoAdapter(memoValuesList, MemoActivity.this, R.layout.memo_list_item);
         lvMemo.setAdapter(memoAdapter);
+    }
+
+
+    //保存后更新列表信息
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initDb();
     }
 }

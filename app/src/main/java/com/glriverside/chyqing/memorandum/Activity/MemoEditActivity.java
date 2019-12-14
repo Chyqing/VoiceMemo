@@ -7,16 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-<<<<<<< HEAD
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-=======
-import android.view.View;
-import android.widget.EditText;
->>>>>>> master
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,21 +29,15 @@ import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechRecognizer;
-<<<<<<< HEAD
 import com.iflytek.cloud.SpeechSynthesizer;
 import com.iflytek.cloud.SynthesizerListener;
-=======
->>>>>>> master
 import com.iflytek.cloud.ui.RecognizerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
 import androidx.appcompat.widget.Toolbar;
-=======
->>>>>>> master
 
 public class MemoEditActivity extends AppCompatActivity {
 
@@ -56,30 +45,21 @@ public class MemoEditActivity extends AppCompatActivity {
     private ImageView ivSave;
     private ImageView ivAlarm;
     private ImageView ivToDo;
-<<<<<<< HEAD
     private ImageView ivSpeak;
-=======
->>>>>>> master
     private EditText etTitle;
     private EditText etContent;
     private TextView tvDate;
     private BottomNavigationView nvMemoContent;
-<<<<<<< HEAD
     private Toolbar edit_toolbar;
     private TextView edit_toolbar_text;
 
-=======
->>>>>>> master
     private Boolean isAlarm = false;
     private Boolean isToDo = false;
     private String alarmTime = null;
     private MemoValues memoValues;
-<<<<<<< HEAD
     private int mPercentForBuffering;
     private int mPercentForPlaying;
     private ImageButton toolbar_btn;
-=======
->>>>>>> master
 
     //新建或修改
     private Boolean model = false;
@@ -89,11 +69,7 @@ public class MemoEditActivity extends AppCompatActivity {
     int ret=0;
     //EditText myEditText;
     private SpeechRecognizer mIat;
-<<<<<<< HEAD
     private SpeechSynthesizer mTts;
-=======
-    private RecognizerDialog iatDialog;
->>>>>>> master
 
     private AlarmManager amMemo;
 
@@ -111,20 +87,12 @@ public class MemoEditActivity extends AppCompatActivity {
             String time = tvDate.getText().toString();
             String alarmTime = "";
 
-<<<<<<< HEAD
             if ("".equals(title)) {
-=======
-            if ("".equals(title)){
->>>>>>> master
                 Toast.makeText(MemoEditActivity.this, "标题不能为空", Toast.LENGTH_LONG).show();
                 return;
             }
 
-<<<<<<< HEAD
             if ("".equals(content)) {
-=======
-            if ("".equals(content)){
->>>>>>> master
                 Toast.makeText(MemoEditActivity.this, "内容不能为空", Toast.LENGTH_LONG).show();
                 return;
             }
@@ -133,17 +101,10 @@ public class MemoEditActivity extends AppCompatActivity {
             contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TITLE, title);
             contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_CONTENT_PATH, content);
             contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_DATE, time);
-<<<<<<< HEAD
             contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ALARM, isAlarm);
             contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TODO, isToDo);
 
             if (isAlarm == true) {
-=======
-            contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ALARM,isAlarm);
-            contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_TODO, isToDo);
-
-            if(isAlarm == true){
->>>>>>> master
                 contentValues.put(MemoContract.MemoEntry.COLUMN_NAME_ALARM_TIME, alarmTime);
             }
 
@@ -215,11 +176,8 @@ public class MemoEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.memo_content);
 
-<<<<<<< HEAD
         init();
 
-=======
->>>>>>> master
         etTitle = findViewById(R.id.et_memo_title);
         etContent = findViewById(R.id.et_memo_content);
         tvDate = findViewById(R.id.tv_time);
@@ -229,22 +187,16 @@ public class MemoEditActivity extends AppCompatActivity {
         ivSave = nvMemoContent.findViewById(R.id.iv_save);
         ivAlarm = nvMemoContent.findViewById(R.id.iv_alarm);
         ivToDo = nvMemoContent.findViewById(R.id.iv_todo);
-<<<<<<< HEAD
         ivSpeak = nvMemoContent.findViewById(R.id.iv_speak);
 
         edit_toolbar_text = findViewById(R.id.text_toolbar);
-=======
->>>>>>> master
 
         Log.d(mTag, "onCreate: logcat work");
 
         ImageView ivVoice = nvMemoContent.findViewById(R.id.iv_voice);
 
         mIat = SpeechRecognizer.createRecognizer(MemoEditActivity.this,mInitListener);
-<<<<<<< HEAD
         mTts = SpeechSynthesizer.createSynthesizer(this,mInitListener);
-=======
->>>>>>> master
 
         mToast = Toast.makeText(this,"",Toast.LENGTH_SHORT);
 
@@ -260,7 +212,6 @@ public class MemoEditActivity extends AppCompatActivity {
         }else{
             alter();
         }
-<<<<<<< HEAD
     }
 
     public void init(){
@@ -280,9 +231,6 @@ public class MemoEditActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.edit_menu,menu);
         return true;
-=======
-
->>>>>>> master
     }
 
     public void edit(){
@@ -316,10 +264,6 @@ public class MemoEditActivity extends AppCompatActivity {
                 }
             }
         });
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     }
 
     public void alter(){
@@ -342,16 +286,12 @@ public class MemoEditActivity extends AppCompatActivity {
             isAlarm =  memoValues.getAlarm();
             alarmTime = memoValues.getAlarmTime();
             isToDo = memoValues.getToDo();
-<<<<<<< HEAD
 
             edit_toolbar_text.setText(memoValues.getTitle());
-=======
->>>>>>> master
         }
 
         ivSave.setOnClickListener(modification);
 
-<<<<<<< HEAD
         //执行语音合成功能
         ivSpeak.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -360,8 +300,6 @@ public class MemoEditActivity extends AppCompatActivity {
                 Log.d(mTag, "onClick: speak start");
             }
         });
-=======
->>>>>>> master
     }
 
     private String getTime(){
@@ -371,7 +309,6 @@ public class MemoEditActivity extends AppCompatActivity {
         return str;
     }
 
-<<<<<<< HEAD
     //朗读功能
     public void read(){
         String text = etContent.getText().toString();
@@ -380,9 +317,6 @@ public class MemoEditActivity extends AppCompatActivity {
     }
 
     //语音输入
-=======
-    //语音
->>>>>>> master
     public void voice_btn_click(View view) {
         if(mIat == null){
             this.showTip("创建对象失败");
@@ -405,7 +339,6 @@ public class MemoEditActivity extends AppCompatActivity {
         mToast.show();
     }
 
-<<<<<<< HEAD
     public void setSynthesisParam() {
         Log.d(mTag, "setSynthesisParam: ");
         mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
@@ -416,8 +349,6 @@ public class MemoEditActivity extends AppCompatActivity {
         mTts.setParameter(SpeechConstant.STREAM_TYPE, "3");
     }
 
-=======
->>>>>>> master
     public void setParam(){
         mIat.setParameter(SpeechConstant.CLOUD_GRAMMAR,null);
         mIat.setParameter(SpeechConstant.SUBJECT,null);
@@ -464,7 +395,6 @@ public class MemoEditActivity extends AppCompatActivity {
         }
     };
 
-<<<<<<< HEAD
     private SynthesizerListener mTtsListener = new SynthesizerListener() {
         @Override
         public void onSpeakBegin() {
@@ -504,8 +434,6 @@ public class MemoEditActivity extends AppCompatActivity {
         }
     };
 
-=======
->>>>>>> master
     //初始化语音听写对象
     private InitListener mInitListener = new InitListener() {
         @Override

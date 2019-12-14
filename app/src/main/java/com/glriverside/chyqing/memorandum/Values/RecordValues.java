@@ -6,6 +6,12 @@ public class RecordValues {
     private String mTitle;
     private String mContent;
 
+    RecordValues(Integer mId,String mTitle,String mContent){
+        this.mId = mId;
+        this.mTitle = mTitle;
+        this.mContent = mContent;
+    }
+
     public void setId(Integer id){
         mId = id;
     }

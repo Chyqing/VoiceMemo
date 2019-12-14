@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 MainActivity.this.finish();
             }
-        }, 2500);
+        }, 1000);
     }
         /*btMemo = findViewById(R.id.bt_memo);
         btRecord = findViewById(R.id.bt_record);
