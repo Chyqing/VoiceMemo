@@ -5,38 +5,51 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:text="主题:"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"/>
+    <include android:id="@+id/edit_toolbar"
+        layout="@layout/edit_toolbar"/>
 
-    <EditText
-        android:id="@+id/et_memo_title"
+    <LinearLayout android:id="@+id/title_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="100dp"
-        android:text="请输入主题" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_time"
-        android:text="Time"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_below="@id/tv_title" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:text="主题:"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/et_memo_title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="100dp"
+            android:text="请输入主题" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:text="Time"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@id/tv_title" />
+
+    </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/sv_content"
-        android:layout_below="@id/tv_time"
+        android:layout_below="@id/title_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <EditText
             android:id="@+id/et_memo_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:background="@null"/>
 
     </ScrollView>
 

@@ -1,4 +1,4 @@
-package com.glriverside.chyqing.memorandum;
+package com.glriverside.chyqing.memorandum.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.glriverside.chyqing.memorandum.R;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         btMemo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Memo.class);
+                Intent intent = new Intent(MainActivity.this, MemoActivity.class);
                 startActivity(intent);
             }
         });
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Record.class);
+                Intent intent = new Intent(MainActivity.this, RecordActivity.class);
                 startActivity(intent);
             }
         });
